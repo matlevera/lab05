@@ -19,13 +19,9 @@ jobs:
           
         - name: Cov1
           shell: bash
-          run: mkdir _build && cd _build && CXX=/usr/bin/g++-7 cmake -DCOVERAGE=1 .. && cmake --build . 
-                     
-        - name: Cov2
-          shell: bash
-          run: ./Test && lcov -t "banking" -o lcov.info -c -d . && lcov --remove lcov.info '/home/runner/work/lab05/lab05/third-party/gtest/*' -o lcov.info && lcov --remove lcov.info '/usr/include/*' -o lcov.info
+          run: mkdir _build && cd _build && CXX=/usr/bin/g++-7 cmake -DCOVERAGE=1 .. && cmake --build . && ./Test && lcov -t "banking" -o lcov.info -c -d . && lcov --remove lcov.info '/home/runner/work/lab05/lab05/third-party/gtest/*' -o lcov.info && lcov --remove lcov.info '/usr/include/*' -o lcov.info
           
-        - name: Cov3
+        - name: Cov2
           uses: coverallsapp/github-action@master
           with:
             github-token: ${{ secrets.github_token }}
